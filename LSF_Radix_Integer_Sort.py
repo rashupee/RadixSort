@@ -115,7 +115,4 @@ def LSF_radix_sort(original_array):
 	working_array = prepend_zeroes(max_length, string_list)
 	answer = back_to_integers(radix_sort(working_array))
 
-	# Now I have a good starting point to actually radix sort
-	# First idea is to iterate the key_position from zero to max_length-1 and bucket sort from the right
-
 	return answer
