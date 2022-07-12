@@ -4,21 +4,9 @@
 #		(as opposed to MSF)
 
 
-
-
-# [170, 45, 75, 90, 2, 802, 2, 66]
-
-# [{170, 90}, {2, 802, 2}, {45, 75}, {66}]
-
-# [{02, 802, 02}, {45}, {66}, {170, 75}, {90}]
-
-# [{002, 002, 045, 066, 075, 090}, {170}, {802}]
-
-# I could pre-prepare a list of strings of the integers where each string has a length matching the largest
-# 	integer in the list
-# Requires a pass through the original array to find the largest integer.
-
 def length_of_max_element(array):
+	# Returns the length of longest string
+	# Expects array of strings
 	max_length = 0
 	for element in array:
 		if len(element) > max_length:
@@ -38,7 +26,7 @@ def stringify_list(original_array):
 
 def prepend_zeroes(max_length, string_array):
 	# Returns list of strings where elements are adjusted to have enough prepended zeroes so that they
-	#	all have the same length as max_length
+	#	all have the length max_length
 	working_array = []
 	for element in string_array:
 		working_array.append( (max_length-len(element))*'0' + element )
@@ -59,7 +47,7 @@ def flattened_2D_array(array_2D):
 
 
 
-def bucket_list(key_position,array):
+def radix_sort(working_array):
 	# Returns a transformation on a given flat array with one iteration of organizing based on given key_position
 	# In particular, a list of lists is returned where every sublist is a bucket where every element will 
 	# 	have the same value at the key_position
@@ -73,28 +61,38 @@ def bucket_list(key_position,array):
 	# Create list of key strings
 	key_strings = [str(index) for index in range(0,10)]
 
-	# Initialize buckets-- separate bucket for each key_string
-	buckets = [ [] for symbol in key_strings]
+	length_of_strings = len(working_array[0]) # They are all the same by construction
 
-	# Populate the buckets
-	for i in range(0, len(buckets) ):
-		for element in array:
-			if element[key_position] == key_strings[i]:
-				buckets[i].append(element)
+	for key_position in range( length_of_strings-1, -1, -1 ):
 
-	return buckets
+		# Initialize buckets-- separate bucket for each key_string
+		buckets = [ [] for symbol in key_strings]
 
+		# Populate the buckets
+		for i in range(0, len(buckets) ):
+			for element in working_array:
+				if element[key_position] == key_strings[i]:
+					buckets[i].append(element)
 
+		# Update the working_array
+		working_array = flattened_2D_array(buckets)
 
-
-
-
-
-
-
+	return working_array
 
 
-def LSF_sorter(original_array):
+
+def back_to_integers(array):
+	# Expects a list of string versions of integers
+
+	# Returns list of integers
+
+	return [ int(element) for element in array ]
+
+
+
+
+
+def LSF_radix_sort(original_array):
 	# Returns a radix sorted array of the integers in the supplied array
 	# LSF is a Stable sort
 	# This function will not change the original_array
@@ -104,12 +102,9 @@ def LSF_sorter(original_array):
 	string_list = stringify_list(original_array)
 	max_length = length_of_max_element(string_list)
 	working_array = prepend_zeroes(max_length, string_list)
+	answer = back_to_integers(radix_sort(working_array))
 
 	# Now I have a good starting point to actually radix sort
-	# First idea is to iterate the key_position from zero to max_length-1 and bucket sort from the right.
+	# First idea is to iterate the key_position from zero to max_length-1 and bucket sort from the right
 
-	# I think I am going to flatten or linearize lists of lists...
-
-
-
-	return None
+	return answer
