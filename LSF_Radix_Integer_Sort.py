@@ -48,15 +48,14 @@ def flattened_2D_array(array_2D):
 
 
 def radix_sort(working_array):
-	# Returns a transformation on a given flat array with one iteration of organizing based on given key_position
-	# In particular, a list of lists is returned where every sublist is a bucket where every element will 
-	# 	have the same value at the key_position
+	# Returns a transformation of the non-empty working_array which is a radix sorted list of strings
 
-	# key_position is translated directly into index location-- so to do LSF, the key_position will start at
-	#	the value max_length-1 and go down to and include value zero
+	# Iterate over the length of the number strings, starting at the LSF (right side digit):
+	#	Each iteration:
+	#		do the bucket sort according to the key_strings which are single character strings
+	#			of the digits
+	#		Then flatten array into a new working array
 
-	# This algorithm will always create a bucket for each key_value- they are empty if there are no entries
-	#	with the key_value in the key_position
 
 	# Create list of key strings
 	key_strings = [str(index) for index in range(0,10)]
@@ -65,7 +64,7 @@ def radix_sort(working_array):
 
 	for key_position in range( length_of_strings-1, -1, -1 ):
 
-		# Initialize buckets-- separate bucket for each key_string
+		# Initialize empty buckets-- separate bucket for each key_string
 		buckets = [ [] for symbol in key_strings]
 
 		# Populate the buckets
@@ -83,7 +82,6 @@ def radix_sort(working_array):
 
 def back_to_integers(array):
 	# Expects a list of string versions of integers
-
 	# Returns list of integers
 
 	return [ int(element) for element in array ]
