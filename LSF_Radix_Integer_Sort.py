@@ -3,14 +3,16 @@
 #	Using the LSF (Least significant figure) First (From the right)
 #		(as opposed to MSF)
 
-def bucket_list(key_position,array):
-	# Returns a transformation on a given array with one iteration of organizing based on given key_position
-	# In particular, a list of lists is returned where every sublist is a bucket where every element will 
-	# 	have the same value at the key_position
-
-	return None
 
 
+
+# [170, 45, 75, 90, 2, 802, 2, 66]
+
+# [{170, 90}, {2, 802, 2}, {45, 75}, {66}]
+
+# [{02, 802, 02}, {45}, {66}, {170, 75}, {90}]
+
+# [{002, 002, 045, 066, 075, 090}, {170}, {802}]
 
 # I could pre-prepare a list of strings of the integers where each string has a length matching the largest
 # 	integer in the list
@@ -45,6 +47,26 @@ def prepend_zeroes(max_length, string_array):
 
 
 
+def flattened_2D_array(array_2D):
+	# Flattens an array to one less dimension
+	flattend_array = []
+	for array in array_2D:
+		for element in array:
+			flattend_array.append(element)
+
+	return flattend_array
+
+
+
+
+def bucket_list(key_position,array):
+	# Returns a transformation on a given array with one iteration of organizing based on given key_position
+	# In particular, a list of lists is returned where every sublist is a bucket where every element will 
+	# 	have the same value at the key_position
+
+
+
+	return None
 
 
 
@@ -67,7 +89,10 @@ def LSF_sorter(original_array):
 	working_array = prepend_zeroes(max_length, string_list)
 
 	# Now I have a good starting point to actually radix sort
+	# First idea is to iterate the key_position from zero to max_length-1 and bucket sort from the right.
 
-	
+	# I think I am going to flatten or linearize lists of lists...
+
+
 
 	return None
