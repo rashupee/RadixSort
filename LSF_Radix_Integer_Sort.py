@@ -4,6 +4,21 @@
 #		(as opposed to MSF)
 
 
+##################### Example Usage #####################
+
+
+# >>> array = [4354,456,23,576567,7645,97700,24,23434662,223,758]
+
+# >>> LSF_radix_sort(array)
+
+# [23, 24, 223, 456, 758, 4354, 7645, 97700, 576567, 23434662]
+
+
+##################### Example Finis #####################
+
+
+
+
 def length_of_max_element(array):
 	# Returns the length of longest string
 	# Expects array of strings
@@ -35,6 +50,7 @@ def prepend_zeroes(max_length, string_array):
 
 
 
+
 def flattened_2D_array(array_2D):
 	# Flattens an array to one less dimension
 	flattend_array = []
@@ -43,7 +59,6 @@ def flattened_2D_array(array_2D):
 			flattend_array.append(element)
 
 	return flattend_array
-
 
 
 
@@ -85,8 +100,6 @@ def back_to_integers(array):
 	# Returns list of integers
 
 	return [ int(element) for element in array ]
-
-
 
 
 
