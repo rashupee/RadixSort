@@ -60,13 +60,30 @@ def flattened_2D_array(array_2D):
 
 
 def bucket_list(key_position,array):
-	# Returns a transformation on a given array with one iteration of organizing based on given key_position
+	# Returns a transformation on a given flat array with one iteration of organizing based on given key_position
 	# In particular, a list of lists is returned where every sublist is a bucket where every element will 
 	# 	have the same value at the key_position
 
+	# key_position is translated directly into index location-- so to do LSF, the key_position will start at
+	#	the value max_length-1 and go down to and include value zero
 
+	# This algorithm will always create a bucket for each key_value- they are empty if there are no entries
+	#	with the key_value in the key_position
 
-	return None
+	# Create list of key strings
+	key_strings = [str(index) for index in range(0,10)]
+
+	# Initialize buckets-- separate bucket for each key_string
+	buckets = [ [] for symbol in key_strings]
+
+	# Populate the buckets
+	for i in range(0, len(buckets) ):
+		for element in array:
+			if element[key_position] == key_strings[i]:
+				buckets[i].append(element)
+
+	return buckets
+
 
 
 
